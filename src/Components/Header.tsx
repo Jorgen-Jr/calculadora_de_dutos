@@ -8,6 +8,9 @@ const Header = () => {
 
   return (
     <Flex textAlign="center" flexDir="column" p="5px">
+      <head>
+        <title>Calculadora de Duto</title>
+      </head>
       <Heading size="2xl" color="#7785AC">
         Welcoming Message
       </Heading>
