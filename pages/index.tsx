@@ -1,10 +1,11 @@
 /* eslint-disable react/no-children-prop */
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input";
-import { Box, Flex, Heading } from "@chakra-ui/layout";
+import { Flex, Heading } from "@chakra-ui/layout";
 import { Stat, StatGroup, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import Layout from "../src/Components/Layout";
+import PrintContainer from "../src/Components/PrintContainer";
 
 const Home: NextPage = () => {
   const [height, setHeight] = useState(0);
@@ -39,26 +40,18 @@ const Home: NextPage = () => {
     ducts_quantity: number
   ): { area: number; lv: number } {
     const area = Math.PI * (((diameter * ducts_quantity * 2.54) / 2) * ((diameter * 2.52) / 2));
-    const lv =
-      ((29000 + (volume - 45) * 30) * ((area / (Math.sqrt(area) - 1)) * (area / (Math.sqrt(area) - 1)))) /
-        (volume * (frequency * frequency)) -
-      0.74 * (area / (Math.sqrt(area) - 1));
 
-    `=((29000+(L20-45)*30)*((L25/(SQRT(L25)-1))*(L25/(SQRT(L25)-1))))/(L20*(L21*L21))-(0,74*(L25/(SQRT(L25)-1)))`;
+    const lva = lv(area, volume, frequency);
 
-    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lv.toFixed(2)) || 0 };
+    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lva.toFixed(2)) || 0 };
   }
 
   function fsDutoRegua(volume: number, frequency: number, height: number, width: number): { area: number; lv: number } {
     const area = height * width;
-    const lv =
-      ((29000 + (volume - 45) * 30) * ((area / (Math.sqrt(area) - 1)) * (area / (Math.sqrt(area) - 1)))) /
-        (volume * (frequency * frequency)) -
-      0.74 * (area / (Math.sqrt(area) - 1));
 
-    `=((29000+(L20-45)*30)*((L25/(SQRT(L25)-1))*(L25/(SQRT(L25)-1))))/(L20*(L21*L21))-(0,74*(L25/(SQRT(L25)-1)))`;
+    const lva = lv(area, volume, frequency);
 
-    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lv.toFixed(2)) || 0 };
+    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lva.toFixed(2)) || 0 };
   }
 
   function fsDutoTriangulo(
@@ -69,25 +62,29 @@ const Home: NextPage = () => {
   ): { area: number; lv: number } {
     const area = ((height * height) / 2) * ducts_quantity;
 
-    const lv =
+    const lva = lv(area, volume, frequency);
+
+    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lva.toFixed(2)) || 0 };
+  }
+
+  function lv(area: number, volume: number, frequency: number): number {
+    const result =
       ((29000 + (volume - 45) * 30) * ((area / (Math.sqrt(area) - 1)) * (area / (Math.sqrt(area) - 1)))) /
         (volume * (frequency * frequency)) -
       0.74 * (area / (Math.sqrt(area) - 1));
 
-    `=((29000+(L20-45)*30)*((L25/(SQRT(L25)-1))*(L25/(SQRT(L25)-1))))/(L20*(L21*L21))-(0,74*(L25/(SQRT(L25)-1)))`;
-
-    return { area: parseFloat(area.toFixed(2)), lv: parseFloat(lv.toFixed(2)) || 0 };
+    return result;
   }
 
   return (
     <Layout>
       {/* Might as well be a component. */}
       <Flex flexDir="column">
-        <Box mb="50px">
-          <Heading m="0 10px">Dutos Retangulares</Heading>
+        <PrintContainer pb="50px" title="Dutos Retangulares">
+          <Heading p="0 10px">Dutos Retangulares</Heading>
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
-              <InputGroup m={["5px 10px", "0 10px"]}>
+              <InputGroup p={["5px 10px", "0 10px"]}>
                 <InputLeftAddon children="Altura" />
                 <Input
                   placeholder="Altura"
@@ -95,7 +92,7 @@ const Home: NextPage = () => {
                   onChange={(event) => setHeight(parseInt(event.target.value) || 0)}
                 />
               </InputGroup>
-              <InputGroup m="0 10px">
+              <InputGroup p="0 10px">
                 <InputLeftAddon children="Largura" />
                 <Input
                   placeholder="Largura"
@@ -114,18 +111,18 @@ const Home: NextPage = () => {
             flexDir={["column", "row"]}
           >
             <Stat>
-              <StatLabel>Duto de 2"</StatLabel>
+              <StatLabel>Duto de 2{'"'}</StatLabel>
               <StatNumber>{dutoRetantular(width, height, 20)}</StatNumber>
               {/* <StatHelpText>Quantidade</StatHelpText> */}
             </Stat>
 
             <Stat>
-              <StatLabel>Duto de 3"</StatLabel>
+              <StatLabel>Duto de 3{'"'}</StatLabel>
               <StatNumber>{dutoRetantular(width, height, 45)}</StatNumber>
             </Stat>
 
             <Stat>
-              <StatLabel>Duto de 4"</StatLabel>
+              <StatLabel>Duto de 4{'"'}</StatLabel>
               <StatNumber>{dutoRetantular(width, height, 81)}</StatNumber>
             </Stat>
 
@@ -134,13 +131,13 @@ const Home: NextPage = () => {
               <StatNumber>{height * width}cm²</StatNumber>
             </Stat>
           </StatGroup>
-        </Box>
+        </PrintContainer>
 
-        <Box mb="50px">
-          <Heading m="0 10px">Duto Redondo Para Régua</Heading>
+        <PrintContainer pb="50px" title="Duto Redondo Para Régua">
+          <Heading p="0 10px">Duto Redondo Para Régua</Heading>
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
-              <InputGroup m="0 10px">
+              <InputGroup p="0 10px">
                 <InputLeftAddon children="Diâmetro Real" />
                 <Input
                   placeholder="Diâmetro Real em polegadas"
@@ -149,7 +146,7 @@ const Home: NextPage = () => {
                 />
               </InputGroup>
 
-              <InputGroup m={["5px 10px", "0 10px"]}>
+              <InputGroup p={["5px 10px", "0 10px"]}>
                 <InputLeftAddon children="Quantidade de Dutos" />
                 <Input
                   placeholder="Quantidade de Dutos"
@@ -189,13 +186,13 @@ const Home: NextPage = () => {
               <StatNumber>{dutoRedondoParaRegua(height, diameter, ducts_quantity).width}cm²</StatNumber>
             </Stat>
           </StatGroup>
-        </Box>
+        </PrintContainer>
 
-        <Box mb="50px">
-          <Heading m="0 10px">FS Duto Redondo</Heading>
+        <PrintContainer pb="50px" title="FS Duto Redondo">
+          <Heading p="0 10px">FS Duto Redondo</Heading>
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
-              <InputGroup m="0 10px">
+              <InputGroup p="0 10px">
                 <InputLeftAddon children="Volume desejado" />
                 <Input
                   placeholder="Volume desejado em litros"
@@ -204,7 +201,7 @@ const Home: NextPage = () => {
                 />
               </InputGroup>
 
-              <InputGroup m={["5px 10px", "0 10px"]}>
+              <InputGroup p={["5px 10px", "0 10px"]}>
                 <InputLeftAddon children="Frequência de Ressonância" />
                 <Input
                   placeholder="Frequência de Ressonância"
@@ -252,13 +249,13 @@ const Home: NextPage = () => {
               <StatNumber>{fsDutoRedonto(volume, frequency, diameter, ducts_quantity).area}cm²</StatNumber>
             </Stat>
           </StatGroup>
-        </Box>
+        </PrintContainer>
 
-        <Box mb="50px">
-          <Heading m="0 10px">FS Duto Régua</Heading>
+        <PrintContainer pb="50px" title="FS Duto Régua">
+          <Heading p="0 10px">FS Duto Régua</Heading>
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
-              <InputGroup m="0 10px">
+              <InputGroup p="0 10px">
                 <InputLeftAddon children="Volume desejado" />
                 <Input
                   placeholder="Volume desejado em litros"
@@ -267,7 +264,7 @@ const Home: NextPage = () => {
                 />
               </InputGroup>
 
-              <InputGroup m={["5px 10px", "0 10px"]}>
+              <InputGroup p={["5px 10px", "0 10px"]}>
                 <InputLeftAddon children="Frequência de Ressonância" />
                 <Input
                   placeholder="Frequência de Ressonância"
@@ -315,13 +312,13 @@ const Home: NextPage = () => {
               <StatNumber>{fsDutoRegua(volume, frequency, height, width).area}cm²</StatNumber>
             </Stat>
           </StatGroup>
-        </Box>
+        </PrintContainer>
 
-        <Box mb="50px">
-          <Heading m="0 10px">FS Duto Triangular</Heading>
+        <PrintContainer pb="50px" title="FS Duto Triangular">
+          <Heading p="0 10px">FS Duto Triangular</Heading>
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
-              <InputGroup m="0 10px">
+              <InputGroup p="0 10px">
                 <InputLeftAddon children="Volume desejado" />
                 <Input
                   placeholder="Volume desejado em litros"
@@ -330,7 +327,7 @@ const Home: NextPage = () => {
                 />
               </InputGroup>
 
-              <InputGroup m={["5px 10px", "0 10px"]}>
+              <InputGroup p={["5px 10px", "0 10px"]}>
                 <InputLeftAddon children="Frequência de Ressonância" />
                 <Input
                   placeholder="Frequência de Ressonância"
@@ -378,7 +375,7 @@ const Home: NextPage = () => {
               <StatNumber>{fsDutoTriangulo(volume, frequency, height, ducts_quantity).area}cm²</StatNumber>
             </Stat>
           </StatGroup>
-        </Box>
+        </PrintContainer>
       </Flex>
     </Layout>
   );
