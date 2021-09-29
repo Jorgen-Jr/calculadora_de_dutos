@@ -4,9 +4,11 @@
 
 [Acesse no seu navegador](https://jorgen-jr.github.io/calculadora_de_duto/)
 
+<p align="center">
+<img src="https://github.com/Jorgen-Jr/Jorgen-Jr.github.io/raw/main/src/assets/image/logo.png" alt="Site Logo" width="200">
+</p>
 <h4 align="center">Estado da Aplicação.</h4>
 <p align="center">
-
   <a href="https://github.com/Jorgen-Jr/room/actions/workflows/deploy.yml">
     <img src="https://github.com/Jorgen-Jr/room/actions/workflows/deploy.yml/badge.svg"
          alt="GH-Pages">

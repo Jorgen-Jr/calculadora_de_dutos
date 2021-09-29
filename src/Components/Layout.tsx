@@ -8,7 +8,7 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 
 const Layout = ({ children }) => {
   return (
-    <Box backgroundColor={useColorModeValue("#FBF5F3", "#1C2826")}>
+    <Box backgroundColor={useColorModeValue("#FFFDFD", "#1C2826")}>
       <Header />
       <Flex pt="70px" justifyContent="center">
         {children}
