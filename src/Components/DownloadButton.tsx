@@ -12,7 +12,10 @@ const DownloadButton = ({ componentRef, title, ...props }) => {
         leftIcon={<DownloadIcon />}
         colorScheme="teal"
         variant="solid"
-        onClick={() => exportComponentAsJPEG(componentRef, { fileName: title })}
+        onClick={(event) => {
+          event.preventDefault();
+          exportComponentAsJPEG(componentRef, { fileName: title });
+        }}
       >
         Baixar
       </Button>

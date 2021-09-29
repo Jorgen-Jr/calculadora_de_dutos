@@ -8,25 +8,6 @@ const Header = () => {
 
   return (
     <Flex textAlign="center" flexDir="column" p="5px">
-      <head>
-        <title>Calculadora de Duto</title>
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
-        <meta data-react-helmet="true" name="twitter:card" content="summary"></meta>
-        <meta
-          data-react-helmet="true"
-          name="twitter:description"
-          content="Uma calculadora de formatos de dutos e calcular frequencia de ressonância."
-        ></meta>
-        <meta data-react-helmet="true" name="twitter:creator" content="Jorge Antônio da Silva Nascimento Junior"></meta>
-        <meta data-react-helmet="true" property="og:title" content="Conversor de Duto"></meta>
-        <meta
-          data-react-helmet="true"
-          property="og:description"
-          content="Uma calculadora de formatos de dutos e calcular frequencia de ressonância."
-        />
-        <meta data-react-helmet="true" property="og:type" content="article"></meta>
-      </head>
-
       <Heading size="2xl" color="#7785AC">
         Conversor de Duto
       </Heading>

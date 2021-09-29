@@ -17,7 +17,7 @@ const PrintContainer = ({ children, title, ...props }) => {
 
   return (
     <Box {...props}>
-      <Box ref={componentRef} pb="10px" pt="10px">
+      <Box ref={componentRef} pb="10px" pt="10px" pr={["15px", "0"]}>
         {children}
       </Box>
 
