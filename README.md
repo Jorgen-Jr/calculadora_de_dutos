@@ -5,7 +5,7 @@
 [Acesse no seu navegador](https://jorgen-jr.github.io/calculadora_de_duto/)
 
 <p align="center">
-<img src="https://github.com/Jorgen-Jr/Jorgen-Jr.github.io/raw/main/src/assets/image/logo.png" alt="Site Logo" width="200">
+<img src="https://raw.githubusercontent.com/Jorgen-Jr/calculadora_de_dutos/main/public/favicon.png" alt="Site Logo" width="200">
 </p>
 <h4 align="center">Estado da Aplicação.</h4>
 <p align="center">
