@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input";
-import { Flex, Heading } from "@chakra-ui/layout";
+import { Flex, Heading, Text } from "@chakra-ui/layout";
 import { Stat, StatGroup, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import React, { useState } from "react";
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const [volume, setVolume] = useState(0);
   const [frequency, setFrequency] = useState(0);
 
-  function dutoRetantular(width: number, height: number, pol: number): number {
+  function dutoRetangular(width: number, height: number, pol: number): number {
     const result = (width * height) / pol;
 
     return Math.round(result);
@@ -33,13 +33,13 @@ const Home: NextPage = () => {
     return { area: parseFloat(area.toFixed(2)), width: parseFloat(width.toFixed(2)) || 0 };
   }
 
-  function fsDutoRedonto(
+  function fsDutoRedondo(
     volume: number,
     frequency: number,
     diameter: number,
     ducts_quantity: number
   ): { area: number; lv: number } {
-    const area = Math.PI * (((diameter * ducts_quantity * 2.54) / 2) * ((diameter * 2.52) / 2));
+    const area = Math.PI * (((diameter * ducts_quantity * 2.54) / 2) * ((diameter * 2.54) / 2));
 
     const lva = lv(area, volume, frequency);
 
@@ -112,18 +112,32 @@ const Home: NextPage = () => {
           >
             <Stat>
               <StatLabel>Duto de 2{'"'}</StatLabel>
-              <StatNumber>{dutoRetantular(width, height, 20)}</StatNumber>
-              {/* <StatHelpText>Quantidade</StatHelpText> */}
+              <StatNumber>
+                {dutoRetangular(width, height, 20)}
+                <Text as="span" fontSize="large">
+                  un
+                </Text>
+              </StatNumber>
             </Stat>
 
             <Stat>
               <StatLabel>Duto de 3{'"'}</StatLabel>
-              <StatNumber>{dutoRetantular(width, height, 45)}</StatNumber>
+              <StatNumber>
+                {dutoRetangular(width, height, 45)}
+                <Text as="span" fontSize="large">
+                  un
+                </Text>
+              </StatNumber>
             </Stat>
 
             <Stat>
               <StatLabel>Duto de 4{'"'}</StatLabel>
-              <StatNumber>{dutoRetantular(width, height, 81)}</StatNumber>
+              <StatNumber>
+                {dutoRetangular(width, height, 81)}
+                <Text as="span" fontSize="large">
+                  un
+                </Text>
+              </StatNumber>
             </Stat>
 
             <Stat>
@@ -138,7 +152,7 @@ const Home: NextPage = () => {
           <form action="">
             <Flex justifyContent="space-evenly" flexDir={["column", "row"]}>
               <InputGroup p="0 10px">
-                <InputLeftAddon children="Diâmetro Real" />
+                <InputLeftAddon children="Diâmetro Real (pol)" />
                 <Input
                   placeholder="Diâmetro Real em polegadas"
                   value={diameter}
@@ -183,7 +197,7 @@ const Home: NextPage = () => {
 
             <Stat>
               <StatLabel>Largura do Duto</StatLabel>
-              <StatNumber>{dutoRedondoParaRegua(height, diameter, ducts_quantity).width}cm²</StatNumber>
+              <StatNumber>{dutoRedondoParaRegua(height, diameter, ducts_quantity).width}cm</StatNumber>
             </Stat>
           </StatGroup>
         </PrintContainer>
@@ -212,15 +226,15 @@ const Home: NextPage = () => {
             </Flex>
 
             <Flex justifyContent="space-evenly" mt={["0", "10px"]} flexDir={["column", "row"]}>
-              <InputGroup m={"0 10px"}>
-                <InputLeftAddon children="Diâmetro do duto" />
+              <InputGroup p={"0 10px"}>
+                <InputLeftAddon children="Diâmetro do Duto (pol)" />
                 <Input
-                  placeholder="Diametro"
+                  placeholder="Diâmetro"
                   value={diameter}
                   onChange={(event) => setDiameter(parseInt(event.target.value) || 0)}
                 />
               </InputGroup>
-              <InputGroup m={"0 10px"}>
+              <InputGroup p={"0 10px"}>
                 <InputLeftAddon children="Quantidade" />
                 <Input
                   placeholder="Quantidade de Dutos"
@@ -240,13 +254,13 @@ const Home: NextPage = () => {
           >
             <Stat>
               <StatLabel>LV</StatLabel>
-              <StatNumber>{fsDutoRedonto(volume, frequency, diameter, ducts_quantity).lv}cm</StatNumber>
+              <StatNumber>{fsDutoRedondo(volume, frequency, diameter, ducts_quantity).lv}cm</StatNumber>
               <StatHelpText>Profundidade do Duto</StatHelpText>
             </Stat>
 
             <Stat>
               <StatLabel>Área do Duto</StatLabel>
-              <StatNumber>{fsDutoRedonto(volume, frequency, diameter, ducts_quantity).area}cm²</StatNumber>
+              <StatNumber>{fsDutoRedondo(volume, frequency, diameter, ducts_quantity).area}cm²</StatNumber>
             </Stat>
           </StatGroup>
         </PrintContainer>
@@ -275,7 +289,7 @@ const Home: NextPage = () => {
             </Flex>
 
             <Flex justifyContent="space-evenly" mt={["0", "10px"]} flexDir={["column", "row"]}>
-              <InputGroup m={"0 10px"}>
+              <InputGroup p={"0 10px"}>
                 <InputLeftAddon children="Altura" />
                 <Input
                   placeholder="Altura"
@@ -283,7 +297,7 @@ const Home: NextPage = () => {
                   onChange={(event) => setHeight(parseInt(event.target.value) || 0)}
                 />
               </InputGroup>
-              <InputGroup m={"0 10px"}>
+              <InputGroup p={"0 10px"}>
                 <InputLeftAddon children="Largura" />
                 <Input
                   placeholder="Largura"
@@ -338,7 +352,7 @@ const Home: NextPage = () => {
             </Flex>
 
             <Flex justifyContent="space-evenly" mt={["0", "10px"]} flexDir={["column", "row"]}>
-              <InputGroup m={"0 10px"}>
+              <InputGroup p={"0 10px"}>
                 <InputLeftAddon children="Comprimento Lado" />
                 <Input
                   placeholder="Comprimento lado"
@@ -346,7 +360,7 @@ const Home: NextPage = () => {
                   onChange={(event) => setHeight(parseInt(event.target.value) || 0)}
                 />
               </InputGroup>
-              <InputGroup m={"0 10px"}>
+              <InputGroup p={"0 10px"}>
                 <InputLeftAddon children="Quantidade de Dutos" />
                 <Input
                   placeholder="Quantidade de Dutos"

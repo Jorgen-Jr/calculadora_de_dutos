@@ -3,17 +3,18 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <Box backgroundColor={useColorModeValue("#FBF5F3", "#1C2826")}>
       <Header />
       <Flex pt="70px" justifyContent="center">
         {children}
       </Flex>
       <Footer />
-    </div>
+    </Box>
   );
 };
 export default Layout;
