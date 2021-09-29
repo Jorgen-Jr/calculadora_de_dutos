@@ -2,7 +2,7 @@
 
 > Uma calculadora de formatos de dutos e calcular frequencia de ressonância para sistemas de audio.
 
-[Acesse no seu navegador](https://jorgen-jr.github.io/calculadora_de_duto/)
+[Acesse no seu navegador](https://calculadoradedutos.netlify.app/)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/Jorgen-Jr/calculadora_de_dutos/main/public/favicon.png" alt="Site Logo" width="200">
