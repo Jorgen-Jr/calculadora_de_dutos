@@ -2,20 +2,20 @@
 
 > Uma calculadora de formatos de dutos e calcular frequencia de ressonância para sistemas de audio.
 
-[Acesse no seu navegador](https://jorgen-jr.github.io/calculadora_de_duto/)
+[Acesse no seu navegador](https://calculadoradedutos.netlify.app/)
 
 <p align="center">
-<img src="https://github.com/Jorgen-Jr/Jorgen-Jr.github.io/raw/main/src/assets/image/logo.png" alt="Site Logo" width="200">
+<img src="https://raw.githubusercontent.com/Jorgen-Jr/calculadora_de_dutos/main/public/favicon.png" alt="Site Logo" width="200">
 </p>
 <h4 align="center">Estado da Aplicação.</h4>
 <p align="center">
-  <a href="https://github.com/Jorgen-Jr/room/actions/workflows/deploy.yml">
-    <img src="https://github.com/Jorgen-Jr/room/actions/workflows/deploy.yml/badge.svg"
+  <a href="https://github.com/Jorgen-Jr/calculadora_de_dutos/actions/workflows/deploy.yml">
+    <img src="https://github.com/Jorgen-Jr/calculadora_de_dutos/actions/workflows/deploy.yml/badge.svg"
          alt="GH-Pages">
   </a>
 
-  <a href="https://app.netlify.com/sites/joujiroom/deploys">
-    <img src="https://api.netlify.com/api/v1/badges/7ca5c5e9-d2e9-43dd-a65f-77dbee6e654f/deploy-status"
+  <a href="https://app.netlify.com/sites/calculadora_de_dutos/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/9a92a83d-4fad-464b-b86a-ca4cd6c7a515/deploy-status)](https://app.netlify.com/sites/calculadoradedutos/deploys"
          alt="Netlify Status">
   </a>
 </p>
