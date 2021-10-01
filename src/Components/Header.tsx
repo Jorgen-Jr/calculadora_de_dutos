@@ -12,12 +12,6 @@ const Header = () => {
         Conversor de Duto
       </Heading>
       <Text>Uma calculadora de formatos de dutos e calcular frequencia de ressonância.</Text>
-      <Text>
-        Desenvolvido por:{" "}
-        <Link href="https://jorgen-jr.github.io/" target="_blank">
-          Jorge Jr :)
-        </Link>
-      </Text>
 
       {/* Hidden feature? :) */}
       <Button maxW="200px" m="auto" onClick={toggleColorMode} display="none">
